@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@material-ui/core'
+import ThemeConfig from './elements/theme';
+import WebLayout from './layout/webLayout'
+import HomePage from './containers/homepage';
+
+const CustomTheme = createTheme(ThemeConfig);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ThemeProvider theme={CustomTheme}>
+        <Router>
+          <WebLayout>
+            <Routes>
+              <Route path="/" element={<HomePage />}></Route>
+            </Routes>
+          </WebLayout>
+        </Router>
+      </ThemeProvider>
+    </>
   );
 }
 
