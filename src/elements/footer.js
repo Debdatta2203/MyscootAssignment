@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useTheme from '@material-ui/core/styles/useTheme';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -15,7 +17,7 @@ import Logo from '../assets/ProjectLogo.png'
 const useStyles = makeStyles(() => ({
     footer: {
         padding: '75px 25px 0',
-        backgroundColor: '#056A67',
+        backgroundImage: 'linear-gradient(to right, #056A67, #004848)',
     },
     footerMenu: {
         display: 'flex',
@@ -68,19 +70,21 @@ const useStyles = makeStyles(() => ({
 
 const Footer = () => {
     const classes = useStyles();
+    const appTheme = useTheme();
+    const isMobile = useMediaQuery(appTheme.breakpoints.down('sm'), { noSsr: true });
 
     return (
         <div className={classes.footer}>
-            <Container>
-                <Grid container spacing={0} style={{ paddingBottom: '75px' }}>
-                    <Grid item md={2}>
+            <Container style={{ padding: isMobile ? '0px' : '', margin: isMobile ? '0px' : '' }}>
+                <Grid container spacing={0} style={{ paddingBottom: isMobile ? '40px' : '75px' }}>
+                    <Grid item md={2} xs={2}>
                         <Link to="/">
                             <img src={Logo} alt="Logo" style={{ height: '50px', objectFit: 'contain' }} />
                         </Link>
                     </Grid>
-                    <Grid item md={8}>
+                    <Grid item md={8} xs={8}>
                         <Grid container spacing={0}>
-                            <Grid item md={4} className={classes.footerMenu}>
+                            <Grid item md={4} xs={4} className={classes.footerMenu}>
                                 <List style={{ paddingTop: '0px' }}>
                                     <ListItem>
                                         <Typography className={classes.heading}>
@@ -99,7 +103,7 @@ const Footer = () => {
                                     </ListItem>
                                 </List>
                             </Grid>
-                            <Grid item md={4} className={classes.footerMenu}>
+                            <Grid item md={4} xs={4} className={classes.footerMenu}>
                                 <List style={{ paddingTop: '2.6rem' }}>
                                     <ListItem>
                                         <Link to="/"  className={classes.menuItem}>
@@ -113,7 +117,7 @@ const Footer = () => {
                                     </ListItem>
                                 </List>
                             </Grid>
-                            <Grid item md={4} className={classes.footerMenu}>
+                            <Grid item md={4} xs={4} className={classes.footerMenu}>
                                 <List style={{ paddingTop: '2.6rem' }}>
                                     <ListItem>
                                         <Link to="/"  className={classes.menuItem}>
@@ -129,9 +133,9 @@ const Footer = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item md={2} className={classes.actionBtn}>
-                        <Typography variant="h5" className={classes.heading2}>
-                            Need more info?
+                    <Grid item md={2} xs={2} className={classes.actionBtn}>
+                        <Typography variant="h5" className={classes.heading2} style={{ fontSize: isMobile ? '18px' : ''}}>
+                            Need more info? <br />
                             <FontAwesomeIcon icon={faFacebook} className={classes.footerIcons} />
                             <FontAwesomeIcon icon={faInstagram} className={classes.footerIcons} />
                             <FontAwesomeIcon icon={faTwitter} className={classes.footerIcons} />

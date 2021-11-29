@@ -34,12 +34,12 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const StepsCard = ({ step }) => {
+const StepsCard = ({ step, isMobile }) => {
     const classes = useStyles();
     const { stepNumber, stepName, description } = step;
 
     return (
-        <Box className={classes.box}>
+        <Box className={classes.box} style={{ marginBottom: isMobile ? '20px' : '' }}>
             <Typography className={classes.tag}>
                 {stepNumber}
             </Typography>
@@ -57,4 +57,5 @@ export default StepsCard;
 
 StepsCard.propTypes = {
     step: PropTypes.instanceOf(Object).isRequired,
+    isMobile: PropTypes.bool.isRequired,
 }

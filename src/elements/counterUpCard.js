@@ -10,7 +10,6 @@ const useStyles = makeStyles(() => ({
     box: {
         backgroundColor: '#ffffff',
         width: '200px',
-        height: '170px',
         padding: '7px',
         borderRadius: '10px',
     },

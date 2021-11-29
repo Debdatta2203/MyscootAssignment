@@ -12,7 +12,7 @@ const WebLayout = ({ children }) => {
     const isMobile = useMediaQuery(appTheme.breakpoints.down('sm'), { noSsr: true });
 
     return (
-        <div style={{ overflowX: 'none' }}>
+        <div>
             <Banner 
                 heading="Learn From The Top 1% LIVE" 
                 text="We partner with the top 1% of instructors to create high-impact CBCs on personal and professional growth for learners all over the world."

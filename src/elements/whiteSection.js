@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles(() => ({
     light: {
@@ -15,9 +14,9 @@ const WhiteSection = ({ children }) => {
     const classes = useStyles();
 
     return (
-        <Container className={classes.light}>
+        <div className={classes.light}>
             {children}
-        </Container>
+        </div>
     );
 };
 

@@ -14,6 +14,7 @@ import Dialog from '@material-ui/core/Dialog';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Logo1 from '../assets/ProjectLogo.png';
 import Logo2 from '../assets/ProjectLogo2.png'
+import { List, ListItem } from '@material-ui/core';
 
 const ElevationScroll = (props) => {
     const { children } = props;
@@ -82,6 +83,16 @@ const MobileHeader = (props) => {
             fontWeight: '800',
             color: '#ffffff',
             textTransform: 'capitalize',
+        },
+        menuItemBtn: {
+            border: 'none',
+            backgroundColor: '#288683',
+            color: '#ffffff',
+            fontFamily: 'Gilroy',
+            fontSize: '18px',
+            fontWeight: '700',
+            textTransform: 'capitalize',
+            width: '100%',
         }
     }));
     const classes = useStyles();
@@ -123,26 +134,64 @@ const MobileHeader = (props) => {
                     </AppBar>
                 </ElevationScroll>
             <Toolbar />
-            {/* <Dialog
+            <Dialog
                 open={open}
                 TransitionComponent={Transition}
                 // keepMounted
                 PaperProps={{
                   style: {
                     width: '100%',
-                    borderRadius: isMobile ? '20px 20px 0px 0px' : '10px',
+                    borderRadius: isMobile ? '0px' : '10px',
                     margin: isMobile ? '0px' : '',
                     top: isMobile ? '0px' : '',
                     position: isMobile ? 'absolute' : '',
                     height: '100vh',
                     maxWidth: '1000px',
+                    backgroundColor: '#004848',
                   },
                 }}
                 onClose={() => setOpen(false)}
                 aria-describedby="alert-dialog-slide-description"
             >
-                hi
-            </Dialog> */}
+                <AppBar className={classes.appBar} style={{ boxShadow: 'none' }}>
+                    <Toolbar className={classes.toolBar}>
+                        <Container>
+                            <Grid container spacing={0}>
+                                <Grid item xs={6}>
+                                <Link to="/">
+                                    <img src={Logo1} alt="Logo" style={{ height: '30px', objectFit: 'contain' }} />
+                                </Link>
+                                </Grid>
+                                <Grid item xs={6} className={classes.actionBtn}>
+                                    <Button variant="contained" className={classes.menuBtn} onClick={() => setOpen(false)}>Close</Button>
+                                </Grid>
+                            </Grid>
+                        </Container>
+                    </Toolbar>
+                    </AppBar>
+                    <Container style={{ marginTop: '4.5rem' }}>
+                        <List>
+                            <ListItem>
+                                <Button variant="contained" className={classes.menuItemBtn} onClick={() => setOpen(false)}>About</Button>
+                            </ListItem>
+                            <ListItem>
+                                <Button variant="contained" className={classes.menuItemBtn} onClick={() => setOpen(false)}>Workshops</Button>
+                            </ListItem>
+                            <ListItem>
+                                <Button variant="contained" className={classes.menuItemBtn} onClick={() => setOpen(false)}>Workshops</Button>    
+                            </ListItem>
+                            <ListItem>
+                                <Button variant="contained" className={classes.menuItemBtn} onClick={() => setOpen(false)}>Community</Button>
+                            </ListItem>
+                            <ListItem>
+                                <Button variant="contained" className={classes.menuItemBtn} onClick={() => setOpen(false)}>Login</Button>
+                            </ListItem>
+                            <ListItem>
+                                <Button variant="contained" className={classes.menuItemBtn} onClick={() => setOpen(false)}>Apply as Mentor</Button>
+                            </ListItem>
+                        </List>
+                    </Container>
+            </Dialog>
         </>
     );
 };

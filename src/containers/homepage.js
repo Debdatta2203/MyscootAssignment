@@ -156,7 +156,7 @@ const HomePage = () => {
                         />
                     ))}
                 </Container>
-                <Divider style={{ backgroundcolor: 'rgba(6, 106, 103, 0.25)' }} />
+                <Divider style={{ backgroundcolor: 'rgba(6, 106, 103, 0.25)', margin: '0px 100px' }} />
                 <Container style={{ display: 'flex', justifyContent: 'center', paddingTop: '50px' }}>
                     <Box className={classes.textDiv}>
                         <Typography className={classes.darkHeading} style={{ fontSize: isMobile ? '30px' : '' }}>
@@ -208,21 +208,21 @@ const HomePage = () => {
                 </Container>
                 <Container  style={{ display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap', paddingTop: '20px', paddingBottom: '80px' }}>
                     {steps.map((step) => (
-                        <StepsCard step={step} />
+                        <StepsCard step={step} isMobile={isMobile} />
                     ))}
                 </Container>
                 <Container>
                 <Divider style={{ backgroundcolor: 'rgba(6, 106, 103, 0.25)' }} />
-                    <Grid container spacing={0} style={{ paddingTop: '30px' }}>
-                        <Grid item md={4}>
-                            <Typography className={classes.darkHeading} style={{ width: '70%' }}>
+                    <Grid container spacing={0} style={{ padding: '30px 50px' }}>
+                        <Grid item md={4} xs={12}>
+                            <Typography className={classes.darkHeading} style={{ width: isMobile ? '80%' : '70%', textAlign: isMobile ? 'center' : '' }}>
                                 Our students love what we do
                             </Typography>
-                            <Typography className={classes.darkText} style={{ width: '70%' }}>
+                            <Typography className={classes.darkText} style={{ width: isMobile ? '80%' : '70%', textAlign: isMobile ? 'center' : '' }}>
                                 Our community is a mix of students, professionals, and budding entrepreneurs, who drive us and inspire us. Here’s them sharing their love.
                             </Typography>
                         </Grid>
-                        <Grid item md={8} style={{ height: '50rem', overflow: 'hidden', overflowY: 'scroll' }}>
+                        <Grid item md={8} xs={12} style={{ height: '50rem', overflow: 'hidden', overflowY: 'scroll' }}>
                             <Grid container spacing={0}>
                                 <Grid item md={5}>
                                     {students.map((student, index) => (
