@@ -32,16 +32,17 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const CounterupCard = ({ image, limit, suffix, text }) => {
+const CounterupCard = ({ image, limit, suffix, text, isMobile }) => {
     const classes = useStyles();
 
     return (
         <div>
-            <Box className={classes.box}>
+            <Box className={classes.box} style={{ marginBottom : isMobile ? '10px' : '', height: isMobile ? '130px' : ''}}>
                 <Grid container spacing={0}>
                     <Grid 
                         item 
                         md={5} 
+                        xs={5}
                         style={{ 
                             backgroundImage: 'linear-gradient(156.93deg, #21B5E0 0%, #00DEB4 100%)', 
                             borderRadius: '10px',
@@ -54,6 +55,7 @@ const CounterupCard = ({ image, limit, suffix, text }) => {
                     <Grid 
                         item 
                         md={7} 
+                        xs={7}
                         style={{ 
                             padding: '20px 10px', 
                             display: 'flex',
@@ -73,6 +75,7 @@ const CounterupCard = ({ image, limit, suffix, text }) => {
                                 decimal=","
                                 prefix=""
                                 suffix={suffix}
+                                style={{ fontSize: isMobile ? '25px' : ''}}
                             />
                             <br />
                             {text}
@@ -91,4 +94,5 @@ CounterupCard.propTypes = {
     limit: PropTypes.number.isRequired,
     suffix: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
+    isMobile: PropTypes.bool.isRequired,
 }

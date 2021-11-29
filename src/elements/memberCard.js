@@ -52,20 +52,20 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const MemberCard = ({ member }) => {
+const MemberCard = ({ member, isMobile }) => {
     const classes = useStyles();
     const { image, name, tag, designation, socialMediaIcon, socialMediaLink } = member;
 
     return (
-        <Card style={{ maxWidth: '240px', padding: '15px', boxShadow: 'none', borderRadius: '10px' }}>
+        <Card style={{ maxWidth: isMobile ? '150px' : '240px', padding: '15px', boxShadow: 'none', borderRadius: '10px', marginBottom: isMobile ? '10px' : '' }}>
             <div className={classes.imageContainer}>
                 <img src={image} alt="person" style={{ width: '100%', borderRadius: '10px', }} />
                 <div className={classes.overlay} style={{ top: '1rem' }}>
                     <Grid container spacing={0}>
-                        <Grid item md={10}>
+                        <Grid item md={10} xs={10}>
                             <Button variant="contained" className={classes.cardBtn}>{tag}</Button>
                         </Grid>
-                        <Grid item md={2} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
+                        <Grid item md={2} xs={2} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
                             <FontAwesomeIcon icon={faPlay} className={classes.icon} />
                         </Grid>
                     </Grid>
@@ -73,12 +73,12 @@ const MemberCard = ({ member }) => {
             </div>
             <CardContent style={{ padding: '10px' }}>
                 <Grid container spacing={0}>
-                    <Grid item md={10}>
+                    <Grid item md={10} xs={10}>
                         <Typography className={classes.heading}>
                             {name}
                         </Typography>
                     </Grid>
-                    <Grid item md={2} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
+                    <Grid item md={2} xs={2} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
                         <Link to={socialMediaLink}>
                             <FontAwesomeIcon icon={socialMediaIcon} className={classes.mediaIcon} />
                         </Link>
@@ -96,4 +96,5 @@ export default MemberCard;
 
 MemberCard.propTypes = {
     member: PropTypes.instanceOf(Object).isRequired,
+    isMobile: PropTypes.bool.isRequired,
 }

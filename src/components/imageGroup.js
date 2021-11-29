@@ -15,17 +15,22 @@ const useStyles = makeStyles(() => ({
         height: '25px', 
         objectFit: 'contain', 
         padding: '20px 20px',
+    },
+    imageMob: {
+        height: '18px', 
+        objectFit: 'contain', 
+        padding: '10px 10px',
     }
 }));
 
-const ImageGroup = ({imageList}) => {
+const ImageGroup = ({imageList, isMobile}) => {
     const classes = useStyles();
 
     return (
         <div className={classes.imageDiv}>
             {imageList.map((image) => (
-                <div style={{ width: '170px' }}>
-                    <img src={image} alt="icons" className={classes.image} />
+                <div style={{ width: isMobile ? 'auto' : '170px' }}>
+                    <img src={image} alt="icons" className={isMobile ? classes.imageMob : classes.image} />
                 </div>
             ))}
         </div>
@@ -36,4 +41,5 @@ export default ImageGroup;
 
 ImageGroup.propTypes = {
     imageList: PropTypes.array.isRequired,
+    isMobile: PropTypes.bool.isRequired,
 }

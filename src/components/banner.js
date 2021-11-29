@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useTheme from '@material-ui/core/styles/useTheme';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
@@ -11,6 +13,10 @@ const useStyles = makeStyles(() => ({
         backgroundImage: 'linear-gradient(to right, #E5FFF4 , rgba(229, 255, 252, 0.84) 83.7%, rgba(229, 255, 252, 0) 100%)',
         height: '700px',
     },
+    bannerSectionMob: {
+        backgroundImage: 'linear-gradient(to right, #E5FFF4 , rgba(229, 255, 252, 0.84) 83.7%, rgba(229, 255, 252, 0) 100%)',
+        height: '500px',
+    },
     bannerTextDiv: {
         textAlign: 'center',
         maxWidth: '590px',
@@ -20,6 +26,14 @@ const useStyles = makeStyles(() => ({
         color: '#014949',
         fontFamily: 'Gilroy',
         fontSize: '64px',
+        fontWeight: '800',
+        padding: '50px',
+        paddingBottom: '10px',
+    },
+    heading1Mob: {
+        color: '#014949',
+        fontFamily: 'Gilroy',
+        fontSize: '34px',
         fontWeight: '800',
         padding: '50px',
         paddingBottom: '10px',
@@ -44,13 +58,15 @@ const useStyles = makeStyles(() => ({
 
 const Banner = ({heading, text, buttonText, children}) => {
     const classes = useStyles();
+    const appTheme = useTheme();
+    const isMobile = useMediaQuery(appTheme.breakpoints.down('sm'), { noSsr: true });
 
     return (
-        <div className={classes.bannerSection}>
+        <div className={isMobile ? classes.bannerSectionMob : classes.bannerSection}>
             {children}
             <Container style={{ display: 'flex', justifyContent: 'center' }}>
                 <Box className={classes.bannerTextDiv}>
-                    <Typography className={classes.heading1}>
+                    <Typography className={isMobile ? classes.heading1Mob : classes.heading1}>
                         {heading}
                     </Typography>
                     <Typography className={classes.bannerText}>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Button from '@material-ui/core/Button';
 
-const CategoryTab = ({ category, isSelected, handleSelect }) => {
+const CategoryTab = ({ category, isSelected, handleSelect, isMobile }) => {
     const [ background, setBackground ] = useState('transparent');
     const [ color, setColor ] = useState('#ffffff');
 
@@ -26,7 +26,6 @@ const CategoryTab = ({ category, isSelected, handleSelect }) => {
             fontWeight: '700',
             color: color,
             textTransform: 'capitalize',
-            padding: '5px 30px',
             '&:hover': {
                 backgroundColor: background,
             }
@@ -41,6 +40,7 @@ const CategoryTab = ({ category, isSelected, handleSelect }) => {
             onClick={() => {
                 handleSelect(category);
             }}
+            style={{ marginBottom : isMobile ? '10px' : '', padding: isMobile ? '5px 10px' : '5px 30px' }}
         >
             {category}
         </Button>
@@ -53,4 +53,5 @@ CategoryTab.propTypes = {
     category: PropTypes.string.isRequired,
     isSelected: PropTypes.bool.isRequired,
     handleSelect: PropTypes.func.isRequired,
+    isMobile: PropTypes.bool.isRequired,
 }

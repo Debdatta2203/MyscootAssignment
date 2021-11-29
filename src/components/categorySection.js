@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import CategoryTab from '../elements/categoryTab';
 import InfoCard from '../elements/infoCard';
 import { categories, worshops } from '../resources/categories';
 
-const CategorySection = () => {
+const CategorySection = ({ isMobile }) => {
     const [ selectedCat, setSelectedCat ] = useState(categories?.[0]);
     const [ list, setList ] = useState(worshops);
 
@@ -23,7 +24,7 @@ const CategorySection = () => {
         <>
             <div style={{ display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap' }}>
                 {categories.map((category) => (
-                    <CategoryTab category={category} isSelected={selectedCat === category ? true : false} handleSelect={handleSelect} />
+                    <CategoryTab category={category} isSelected={selectedCat === category ? true : false} handleSelect={handleSelect} isMobile={isMobile} />
                 ))}
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap', paddingTop: '20px' }}>
@@ -36,3 +37,7 @@ const CategorySection = () => {
 };
 
 export default CategorySection;
+
+CategorySection.propTypes = {
+    isMobile: PropTypes.bool.isRequired,
+}

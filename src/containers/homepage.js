@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useTheme from '@material-ui/core/styles/useTheme';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -82,6 +84,8 @@ const HomePage = () => {
     }, []);
 
     const classes = useStyles();
+    const appTheme = useTheme();
+    const isMobile = useMediaQuery(appTheme.breakpoints.down('sm'), { noSsr: true });
     const imageList = [Razorpay, Amazon, Paytm, Microsoft, Google, Ola, Facebook, Oyo];
     const counterUps = [
         {
@@ -112,16 +116,16 @@ const HomePage = () => {
             <DarkSection>
                 <Container>
                     <Grid container spacing={0}>
-                        <Grid item md={4}>
-                            <Typography className={classes.lightHeading}>
+                        <Grid item md={4} xs={12} style={{ textAlign: isMobile ? 'center' : '' }}>
+                            <Typography className={classes.lightHeading} style={{ fontSize: isMobile ? '34px' : ''}}>
                                 10,000 +
                             </Typography>
-                            <Typography className={classes.lightText} style={{ maxWidth: '80%' }}>
+                            <Typography className={classes.lightText} style={{ maxWidth: isMobile ? '100%' : '80%' }}>
                                 Folks from top brands and companies have experienced GrowthSchool
                             </Typography>
                         </Grid>
-                        <Grid item md={8}>
-                            <ImageGroup imageList={imageList} />
+                        <Grid item md={8} xs={12}>
+                            <ImageGroup imageList={imageList} isMobile={isMobile} />
                         </Grid>
                     </Grid>
                 </Container>
@@ -129,14 +133,14 @@ const HomePage = () => {
             <LightSection>
                 <Container style={{ display: 'flex', justifyContent: 'center' }}>
                     <Box className={classes.textDiv}>
-                        <Typography className={classes.darkText} style={{ opacity: '1', fontSize: '22px', paddingBottom: '40px' }}>
+                        <Typography className={classes.darkText} style={{ opacity: '1',paddingBottom: '40px', fontSize: isMobile ? '16px' : '22px' }}>
                             Growth School does what colleges still don’t provide- an engaging learning experience. We stay relevant by co-creating hands-on programs with the top professionals who find bookish knowledge as dull as we do.
                         </Typography>
-                        <Divider style={{ backgroundcolor: 'rgba(6, 106, 103, 0.25)' }} />
-                        <Typography className={classes.darkHeading} style={{ paddingTop: '40px', lineHeight: '49px' }}>
+                        <Divider style={{ backgroundcolor: 'rgba(6, 106, 103, 0.25)'}} />
+                        <Typography className={classes.darkHeading} style={{ paddingTop: '40px', lineHeight: '49px', fontSize: isMobile ? '30px' : '' }}>
                             Join a community
                         </Typography>
-                        <Typography className={classes.darkHeading} style={{ paddingBottom: '40px' }}>
+                        <Typography className={classes.darkHeading} style={{ paddingBottom: '40px', fontSize: isMobile ? '30px' : '' }}>
                             With a strong drive to excel
                         </Typography>
                     </Box>
@@ -148,13 +152,14 @@ const HomePage = () => {
                             limit={counter.limit}
                             suffix={counter.suffix}
                             text={counter.text}
+                            isMobile={isMobile}
                         />
                     ))}
                 </Container>
                 <Divider style={{ backgroundcolor: 'rgba(6, 106, 103, 0.25)' }} />
                 <Container style={{ display: 'flex', justifyContent: 'center', paddingTop: '50px' }}>
                     <Box className={classes.textDiv}>
-                        <Typography className={classes.darkHeading}>
+                        <Typography className={classes.darkHeading} style={{ fontSize: isMobile ? '30px' : '' }}>
                             New age mentors to help you
                             grow, learn and upskill
                         </Typography>
@@ -165,7 +170,7 @@ const HomePage = () => {
                         <InfiniteCarousel>
                             <div> */}
                             {members.map((member) => (
-                                <MemberCard member={member} />
+                                <MemberCard member={member} isMobile={isMobile} />
                             ))}
                             {/* </div>
                         </InfiniteCarousel>
@@ -173,9 +178,9 @@ const HomePage = () => {
                 </Container>
             </LightSection>
             <DarkSection>
-                <Container style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Box className={classes.textDiv}>
-                        <Typography className={classes.lightHeading}>
+                <Container style={{ display: 'flex', justifyContent: 'center', padding: isMobile ? '0px' : '' }}>
+                    <Box className={classes.textDiv} style={{ maxWidth: isMobile ? '800px' : '' }}>
+                        <Typography className={classes.lightHeading} style={{ fontSize: isMobile ? '29px' : '' }}>
                             LIVE Workshops
                         </Typography>
                         <Typography className={classes.lightText}>
@@ -184,7 +189,7 @@ const HomePage = () => {
                     </Box>
                 </Container>
                 <Container style={{ padding: '0px', paddingBottom: '100px' }}>
-                    <CategorySection />
+                    <CategorySection isMobile={isMobile} />
                 </Container>
             </DarkSection>
             <LightSection>
@@ -270,11 +275,11 @@ const HomePage = () => {
             </DarkSection>
             <WhiteSection>
                 <Container style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Box className={classes.textDiv} style={{ maxWidth: '900px' }}>
-                        <Typography className={classes.darkHeading}>
+                    <Box className={classes.textDiv} style={{ maxWidth: isMobile ? '300px' : '900px' }}>
+                        <Typography className={classes.darkHeading} style={{ fontSize : isMobile ? '30px' : '' }}>
                             Community-led learning is the future
                         </Typography>
-                        <Typography className={classes.darkText} style={{ paddingLeft: '150px', paddingRight: '150px' }}>
+                        <Typography className={classes.darkText} style={{ paddingLeft: isMobile ? '' : '150px', paddingRight: isMobile ? '' : '150px' }}>
                             We at Growth School facilitate a dynamic community to build real-world problem-solving skills.
                         </Typography>
                         <Button 
@@ -300,17 +305,17 @@ const HomePage = () => {
                     ))}
                 </Container>
                 <Container style={{ display: 'flex', justifyContent: 'center', paddingTop: '50px' }}>
-                    <img src={Background} alt="background" />
+                    <img src={Background} alt="background" style={{ display: isMobile ? 'none' : '' }} />
                 </Container>
                 <Container>
                     <NewsLetter />
                 </Container>
                 <Container style={{ display: 'flex', justifyContent: 'center', paddingTop: '100px', paddingBottom: '100px' }}>
-                    <Box className={classes.textDiv} style={{ maxWidth: '800px' }}>
-                        <Typography className={classes.darkHeading}>
+                    <Box className={classes.textDiv} style={{ maxWidth: isMobile ? '300px' : '800px' }}>
+                        <Typography className={classes.darkHeading} style={{ fontSize : isMobile ? '30px' : '' }}>
                             25+ Offerings To Enable You
                         </Typography>
-                        <Typography className={classes.darkText} style={{ paddingLeft: '150px', paddingRight: '150px' }}>
+                        <Typography className={classes.darkText} style={{ paddingLeft: isMobile ? '' : '150px', paddingRight: isMobile ? '' : '150px' }}>
                             Sounds exciting? Check out the programs and workshops we have on offer now.
                         </Typography>
                         <Button 
